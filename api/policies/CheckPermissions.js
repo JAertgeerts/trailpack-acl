@@ -86,7 +86,10 @@ module.exports = class CheckPermissionsPolicy extends Policy {
             return next()
           }
         }
-      }).catch(next)
+      }).catch(err => {
+        this.app.log.error(err)
+        return next()
+      })
     }
     else if (defaultRole) {
       this.app.services.PermissionService.isAllowed(defaultRole, modelName, action).then(permission => {
