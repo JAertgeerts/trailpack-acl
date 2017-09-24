@@ -47,11 +47,9 @@ module.exports = class PermissionService extends Service {
         })
         return Promise.all(promises).then(permissions => {
           const perms = []
-          permissions.forEach(perm => {
-            if (perm != null) {
-              perms.push(perm)
-            }
-          })
+          for (let perm of permissions) {
+            perms.push(perm)
+          }
           return Promise.resolve(perms)
         })
       })
