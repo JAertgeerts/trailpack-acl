@@ -9,7 +9,7 @@ const _ = require('lodash')
  */
 module.exports = class CheckPermissionsPolicy extends Policy {
   checkModel(req, res, next) {
-    const modelName = req.params.model
+    const modelName = req.params.model || req.params.childAttribute
     const user = req.user
     const defaultRole = this.app.config.permissions.defaultRole
 
